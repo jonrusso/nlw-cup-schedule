@@ -6,36 +6,69 @@
 
 }
 
+:root {
+    --card-title-border-color: #746615;
+    --card-color-primary: #f7dd43;
+    --card-bg-color: #1d1d19;
+    --bg: url(./assets/bg-blue.svg);
+}
+
 body * {
     font-family: 'Roboto', sans-serif;
 }
 
+
 body {
     background-color: #121214;
-    background-image: url(assets/bg-overlay.svg);
-    background-position-x: center;
-    background-position-y: 50%;
+    background-image: var(--bg);
     display: flex;
+    background-size: cover;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-#app {
-    width: fit-content;
-    
+body.blue {
+    --card-title-border-color: #338af3;
+    --card-color-primary: #338af3;
+    --card-bg-color: #202024;
+    --bg: url(./assets/bg-blue.svg);
+}
+
+body.green {
+    --card-title-border-color: #047c3f;
+    --card-color-primary: #047c3f;
+    --card-bg-color: #202024;
+    --bg: url(./assets/bg-green.svg);
+}
+
+body.yellow {
+    --card-title-border-color: #F7DD43;
+    --card-color-primary: #F7DD43;
+    --card-bg-color: #1D1C19;
+    --bg: url(./assets/bg-yellow.svg);
 }
 
 header {
     margin-bottom: 63px;
+    text-align: center;
+}
 
+#app {
+    width: fit-content; 
+}
+
+#cards {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .card {
     padding: 32px 23px;
     text-align: center;
-    background: #1D1C19;
-    border-bottom: 2px solid #F7DD43;
+    background: var( --card-bg-color);
+    border-bottom: 2px solid var(--card-color-primary);
     border-radius: 8px;
 }
 
@@ -46,7 +79,7 @@ header {
     align-items: center;
 
     padding: 8px 16px;
-    border: 1px solid #746615;
+    border: 1px solid var( --card-title-border-color);
     border-radius: 6px;
 
     width: fit-content;
@@ -89,4 +122,36 @@ header {
     border-top: 1px solid #323238
 }
 
+.card ul li strong:hover,
+.card ul li img:hover {
+    transform: scale(1.1);
+ }
+ 
+ .card ul li strong,
+ .card ul li img {
+    transition: transform 0.2s;
+ }
 
+ .card {
+    animation: appear 1.8s;
+ }
+
+ @keyframes appear {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }}
+
+@media (min-width: 700px) {
+    #cards {
+        max-width: 670px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }}
+
+   
